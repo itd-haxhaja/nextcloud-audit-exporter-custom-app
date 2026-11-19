@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file (Keep a Changelog format).
 
+## [1.1.2] - 2026-11-19
+
+### Changed
+- The app is now called "ITdesign Audit Exporter App" (was "AudIT Permission Exporter") in the app
+  list, on the admin settings page and in the documentation. The app id `audit_export`, the API
+  paths and the settings keys are unchanged.
+- `info.xml`: ITdesign is the only listed author.
+
 ## [1.1.1] - 2026-11-19
 
 ### Changed

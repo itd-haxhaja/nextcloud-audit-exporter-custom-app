@@ -1,11 +1,11 @@
-# AudIT Permission Exporter — Nextcloud App (`audit_export`)
+# ITdesign Audit Exporter App (`audit_export`)
 
 A Nextcloud app that acts as a unified, admin-authenticated **REST API
 gateway** for exporting permission-relevant data from a Nextcloud instance
-into the AudIT Tool.
+into the ITdesign AudIT Tool.
 
-The app is the *server-side* half of the AudIT Nextcloud integration. The
-*client-side* half is the AudIT Nextcloud Exporter (repo:
+The app is the *server-side* half of the ITdesign AudIT Nextcloud integration. The
+*client-side* half is the ITdesign AudIT Nextcloud Exporter (repo:
 `audit.nextcloud-exporter`, `python/nextcloud.py`) which calls this API and
 writes the data to CSVs.
 
@@ -219,7 +219,7 @@ Basic Auth with either:
 2. Create a group `audit_export_readers`
 3. Add the user to that group
 4. `occ config:app:set audit_export allowed_group --value audit_export_readers`
-   (shown under Admin → Additional settings → AudIT Permission Exporter)
+   (shown under Admin → Additional settings → ITdesign Audit Exporter App)
 5. Generate an **app password** for the service account
    (Settings → Security → App passwords) and put it in the AudIT vault
 
@@ -230,7 +230,7 @@ access to the export API.
 
 ## Admin Settings
 
-Available under **Admin → Additional settings → AudIT Permission Exporter**:
+Available under **Admin → Additional settings → ITdesign Audit Exporter App**:
 
 | Setting                              | Default | Description                                                       |
 |--------------------------------------|---------|-------------------------------------------------------------------|

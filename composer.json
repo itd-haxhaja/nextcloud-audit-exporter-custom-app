@@ -1,6 +1,6 @@
 {
     "name": "itdesign/audit-export",
-    "description": "AudIT Permission Exporter — Nextcloud app",
+    "description": "ITdesign Audit Exporter App for Nextcloud",
     "type": "nextcloud-app",
     "license": "AGPL-3.0-or-later",
     "require": {

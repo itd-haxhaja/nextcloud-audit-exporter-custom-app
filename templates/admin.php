@@ -2,7 +2,7 @@
 /** @var array $_ Template variables: allowed_group, activity_max_age_days */
 ?>
 <div id="audit-export-admin" class="section">
-    <h2><?php p($l->t('AudIT Permission Exporter')); ?></h2>
+    <h2><?php p($l->t('ITdesign Audit Exporter App')); ?></h2>
     <p class="settings-hint">
         <?php p($l->t('All /apps/audit_export/api/v1/export/* endpoints require an admin account or membership in the allowed group.')); ?>
     </p>
