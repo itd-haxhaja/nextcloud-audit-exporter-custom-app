@@ -1,0 +1,7 @@
+vendor/
+dist/
+.phpunit.result.cache
+.phpunit.integration.result.cache
+composer.lock
+# Internal publishing notes — not part of the public repo or the shipped app
+STORE.md

@@ -1,0 +1,21 @@
+# Everything that is NOT part of the shipped Nextcloud app.
+# This file is the single source of truth for the app's content: the Dockerfile copies the
+# whole context minus these patterns, and `make build` feeds the same file to rsync
+# (--exclude-from) so the release tarball and the image carry identical files.
+# (scripts/ is excluded by the Makefile only — the Dockerfile needs it for the entrypoint.)
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+Jenkinsfile
+Makefile
+composer.json
+composer.lock
+phpunit.xml
+phpunit.integration.xml
+*.cache
+tests/
+vendor/
+dist/
+node_modules/
+STORE.md
