@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file (Keep a Changelog format).
 
+## [1.1.1] - 2026-11-19
+
+### Changed
+- `info.xml`: bug tracker and repository URLs point to the public GitHub repository; ITdesign
+  is listed as author; German description added.
+- Group folder export resolves the `FolderManager` through the public `\OCP\Server::get()` API.
+
+### Removed
+- Init-container image: Dockerfile, `scripts/install-app.sh`, Jenkinsfile, `make image` and
+  `make image-smoke`, and the Kubernetes section of the README. The app is installed by copying
+  the folder into `custom_apps`.
+
 ## [1.1.0] - 2026-10-08
 
 ### Fixed

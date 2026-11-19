@@ -111,39 +111,17 @@ podman exec -u www-data <nextcloud_container> \
     php occ app:enable audit_export
 ```
 
-### Kubernetes (ITdesign, nextcloud.itdesign.cloud)
+### Updating
 
-Nextcloud cannot install an app from an image or a tarball, so the app is shipped as a
-tiny **init-container image** that copies the folder into the `custom_apps` volume:
+Replace the `audit_export` folder with the new version, then run:
 
-```
-harbor.itdesign.cloud/audit/nextcloud-export-app:<tag>   # tags: Jenkins build number, app version (info.xml), latest
-```
-
-The image is built by the `Jenkinsfile` of this repo (Dockerfile + `scripts/install-app.sh`;
-content = repository minus `.dockerignore`). Wiring in the monorepo's Nextcloud chart values:
-
-```yaml
-nextcloud:
-  extraInitContainers:
-    - name: audit-export-app
-      image: harbor.itdesign.cloud/audit/nextcloud-export-app:1.1.0
-      securityContext: { runAsUser: 33, runAsGroup: 33, runAsNonRoot: true, allowPrivilegeEscalation: false,
-                         capabilities: { drop: ["ALL"] }, seccompProfile: { type: RuntimeDefault } }
-      volumeMounts:
-        - name: nextcloud-main
-          mountPath: /custom_apps
-          subPath: custom_apps
-  hooks:
-    before-starting: |
-      #!/bin/bash
-      php occ upgrade
-      php occ app:enable audit_export
+```bash
+sudo -u www-data php /var/www/html/occ upgrade
 ```
 
 **Every change that is shipped must bump `<version>` in `appinfo/info.xml`**: Nextcloud compares
 it with the installed version and refuses to serve the instance ("update needed") until
-`occ upgrade` has run — which the hook above does on every start.
+`occ upgrade` has run.
 
 ### Verify
 

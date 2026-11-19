@@ -76,9 +76,9 @@ if ! in_container true 2>/dev/null; then
 fi
 
 step "Installing audit_export app into custom_apps"
-# Same content as the shipped image/tarball: everything minus .dockerignore (rsync is part of the official image)
+# Same content as the release tarball: everything minus .dockerignore (rsync is part of the official image)
 in_container mkdir -p /var/www/html/custom_apps/audit_export
-in_container rsync -a --delete --exclude-from=/opt/audit_export_src/.dockerignore --exclude='scripts/' \
+in_container rsync -a --delete --exclude-from=/opt/audit_export_src/.dockerignore \
     /opt/audit_export_src/ /var/www/html/custom_apps/audit_export/
 in_container chown -R www-data:www-data /var/www/html/custom_apps/audit_export
 # Reload Apache so a redeploy is not served from a stale opcache

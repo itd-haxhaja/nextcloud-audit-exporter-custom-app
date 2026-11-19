@@ -27,7 +27,7 @@ EXPORTER_DIR ?= ../../nextcloud-exporter/audit.nextcloud-exporter
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install lint test test-integration build image image-smoke clean start-nc stop-nc wait-nc seed \
+.PHONY: help install lint test test-integration build clean start-nc stop-nc wait-nc seed \
         test-exporter test-exporter-noapp
 
 help: ## Show this help
@@ -84,19 +84,12 @@ test-exporter-noapp: ## E2E: fresh vanilla Nextcloud WITHOUT the app, seed, veri
 		tests/exporter/exporter_e2e.sh
 	$(MAKE) stop-nc
 
-build: ## Build the distributable .tar.gz (same content as the image: everything minus .dockerignore)
+build: ## Build the distributable .tar.gz (everything minus the patterns in .dockerignore)
 	rm -rf $(DIST_DIR)/$(APP_ID) $(BUILD_FILE)
 	mkdir -p $(DIST_DIR)/$(APP_ID)
-	rsync -a --exclude-from=.dockerignore --exclude='scripts/' ./ $(DIST_DIR)/$(APP_ID)/
+	rsync -a --exclude-from=.dockerignore ./ $(DIST_DIR)/$(APP_ID)/
 	tar -C $(DIST_DIR) -czf $(BUILD_FILE) $(APP_ID)
 	@echo "Built: $(BUILD_FILE) ($$(du -h $(BUILD_FILE) | cut -f1))"; tar -tzf $(BUILD_FILE) | grep -E '^[^/]+/[^/]+/?$$'
-
-image: ## Build the init-container image locally (nextcloud-export-app:dev)
-	podman build --build-arg APP_VERSION=$$(awk -F'[<>]' '/<version>/{print $$3; exit}' appinfo/info.xml) --tag nextcloud-export-app:dev .
-
-image-smoke: ## Run the same smoke test as the Jenkins pipeline against nextcloud-export-app:dev
-	podman run --rm --entrypoint sh nextcloud-export-app:dev -c 'set -e; mkdir -p /tmp/custom_apps; TARGET_DIR=/tmp/custom_apps install-app; \
-	  test -f /tmp/custom_apps/audit_export/appinfo/info.xml; test ! -e /tmp/custom_apps/audit_export/tests; test ! -e /tmp/custom_apps/audit_export/vendor'
 
 clean: ## Remove build artefacts
 	rm -rf $(DIST_DIR) .phpunit.result.cache .phpunit.integration.result.cache
