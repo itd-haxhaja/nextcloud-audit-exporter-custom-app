@@ -1,0 +1,1 @@
+{"version":2,"defects":{"CanonTest::testSameDetectsStringKeys":7,"CanonTest::testArrayIsListDetects":7},"times":{"CanonTest::testCanonicalizingIgnoresStringKeys":0.001,"CanonTest::testSameDetectsStringKeys":0.002,"CanonTest::testArrayIsListDetects":0}}
