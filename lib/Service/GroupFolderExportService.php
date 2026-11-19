@@ -63,7 +63,7 @@ class GroupFolderExportService {
     private function getFoldersFromManager(): array {
         // Use FolderManager directly — avoids an internal HTTP call
         /** @var \OCA\GroupFolders\Folder\FolderManager $fm */
-        $fm = \OC::$server->get(\OCA\GroupFolders\Folder\FolderManager::class);
+        $fm = \OCP\Server::get(\OCA\GroupFolders\Folder\FolderManager::class);
         $raw = $fm->getAllFolders();
 
         $items = [];

@@ -28,8 +28,8 @@
     <author mail="erbli.haxhaja@itdesign.at">AudIT Development Team</author>
     <namespace>AuditExport</namespace>
     <category>tools</category>
-    <bugs>https://bitbucket.org/itdesign-at/audit.nextcloud-export-app/issues</bugs>
-    <repository type="git">https://bitbucket.org/itdesign-at/audit.nextcloud-export-app.git</repository>
+    <bugs>https://github.com/itd-haxhaja/nextcloud-audit-exporter-custom-app/issues</bugs>
+    <repository type="git">https://github.com/itd-haxhaja/nextcloud-audit-exporter-custom-app.git</repository>
     <dependencies>
         <php min-version="8.1"/>
         <nextcloud min-version="27" max-version="34"/>
